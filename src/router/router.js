@@ -2,26 +2,32 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
-    Switch,
-    Link
+    Switch
 } from 'react-router-dom';
-import Home from '../pages/Home/Home';
-import Page from '../pages/Page/Page';
+import Bundle from './Bundle';
+import Home from 'bundle-loader?lazy&name=home!../pages/Home/Home';
+import Page from 'bundle-loader?lazy&name=page!../pages/Page/Page';
 
-const getRouter = () => (
-    
-    <Router>
-        <div>
-            <ul>
-                <li><Link to="/">首页</Link></li>
-                <li><Link to="/page">Page</Link></li>
-            </ul>
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/page" component={Page}/>
-            </Switch>
-        </div>
-    </Router>
+
+const Loading = () => {
+    return <div>Loading...</div>
+};
+
+const createComponent = (component) => (props) => (
+    <Bundle load={component}>
+        {
+            (Component) => Component
+                ? <Component {...props}/>
+                : <Loading/>
+        }
+    </Bundle>
 );
 
-export default getRouter;
+export const getRouter = () => (
+    <Router>
+        <Switch>
+            <Route exact strict path="/" component={createComponent(Home)}/>
+            <Route path="/page" component={createComponent(Page)}/>
+        </Switch>
+    </Router>
+);
