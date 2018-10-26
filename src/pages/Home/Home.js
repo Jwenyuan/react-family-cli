@@ -13,7 +13,6 @@ export default class Home extends React.Component {
         this.setState({
             count: this.state.count++
         });
-        console.log(124);
         console.log(this.state.count);
     }
     render() {
