@@ -5,7 +5,7 @@ export default class Page extends React.Component {
     render() {
         return (
             <div className="test-page">
-                我是page页
+                我是page
             </div>
         );
     }
