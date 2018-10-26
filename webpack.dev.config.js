@@ -9,11 +9,17 @@ module.exports = {
     ],
     // babel编译
     module: {
-        rules: [{
-            test: /\.js$/,
-            use: ['babel-loader?cacheDirectory=true'],
-            include: path.join(__dirname, 'src')
-        }]
+        rules: [
+            {
+                test: /\.js$/,
+                use: ['babel-loader?cacheDirectory=true'],
+                include: path.join(__dirname, 'src')
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
     },
     // 输出文件
     output: {
@@ -29,8 +35,15 @@ module.exports = {
         host: '0.0.0.0',
         hot: true
     },
-    // 添加热更新
+    // 添加热更新插件
     plugins: [
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    resolve: {
+        // 项目路径别名
+        alias: {
+            Pages: path.join(__dirname, 'src/pages'),
+            Component: path.join(__dirname, 'src/component')
+        }
+    }
 };

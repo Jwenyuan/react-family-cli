@@ -5,8 +5,8 @@ import {
     Switch
 } from 'react-router-dom';
 import Bundle from './Bundle';
-import Home from 'bundle-loader?lazy&name=home!../pages/Home/Home';
-import Page from 'bundle-loader?lazy&name=page!../pages/Page/Page';
+import Home from 'bundle-loader?lazy&name=home!Pages/Home/Home';
+import Page from 'bundle-loader?lazy&name=page!Pages/Page/Page';
 
 
 const Loading = () => {

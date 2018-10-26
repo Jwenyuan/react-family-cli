@@ -1,9 +1,12 @@
 import React from 'react';
+import './style.css';
 
 export default class Page extends React.Component {
     render() {
         return (
-            <div>我是page页</div>
+            <div className="test-page">
+                我是page页
+            </div>
         );
     }
 }
